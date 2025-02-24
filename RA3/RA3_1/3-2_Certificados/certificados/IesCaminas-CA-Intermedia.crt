@@ -1,0 +1,96 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            a4:ac:b6:d8:87:96:0d:cf:de:4f:e4:e7:54:5e:61:0e
+        Signature Algorithm: sha512WithRSAEncryption
+        Issuer: C=ES, ST=Castellon, L=Castellon de la Plana, O=Especializacion Ciberseguridad, OU=iescaminas-edu, CN=Easy-RSA CA/emailAddress=jlleo@iescaminas-edu.mylocal
+        Validity
+            Not Before: Feb 15 10:49:40 2025 GMT
+            Not After : Feb 15 10:49:40 2026 GMT
+        Subject: C=ES, ST=Castellon, L=Castellon de la Plana, O=Especializacion Ciberseguridad, OU=iescaminas-edu-intermedia, CN=Easy-RSA Sub-CA/emailAddress=jlleo@iescaminas-edu.mylocal
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:c4:58:a5:da:2d:d0:03:8a:74:32:c1:e9:6e:d8:
+                    d9:78:ec:da:46:45:88:f9:88:9e:c2:bd:66:6c:3c:
+                    3e:73:fd:41:30:e1:45:7a:ce:28:e8:ba:ef:c9:28:
+                    86:15:11:81:bc:8f:ce:45:fb:bb:5f:c6:4e:3c:76:
+                    57:df:19:29:9b:6e:45:32:4b:dd:87:ec:2a:ba:9d:
+                    c0:ae:e5:68:3d:b1:a5:8c:78:52:4d:2e:a7:d1:29:
+                    d0:1e:30:cd:ba:ca:e4:9d:6a:11:10:92:42:66:c1:
+                    37:69:07:4c:5b:2f:65:7f:c7:3a:d5:65:7a:36:f7:
+                    3a:fd:3f:02:38:df:6a:50:d2:e4:50:71:e1:12:0e:
+                    7f:81:a9:d1:4e:00:33:b9:b1:b7:aa:e9:c7:94:b0:
+                    5e:da:d6:e4:35:43:41:1b:67:86:de:35:3f:66:83:
+                    36:0f:85:80:e5:63:42:5b:17:5b:de:60:91:62:bd:
+                    a7:6b:44:d7:75:8b:bb:9a:b3:6d:fb:aa:22:4d:7f:
+                    85:1d:29:ca:1f:c3:f9:16:a4:dc:4f:5b:f9:ae:71:
+                    5b:90:c9:3e:82:62:a8:ee:20:65:cd:1a:d0:bd:a5:
+                    8a:99:3f:c4:36:53:fd:b8:74:ab:28:ef:f4:47:17:
+                    44:78:fc:f5:e6:40:a8:d3:8b:e1:14:da:c4:28:46:
+                    31:0f
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:TRUE
+            X509v3 Subject Key Identifier: 
+                00:30:26:B2:D5:77:63:92:87:DC:3E:BD:A0:1C:AD:7A:66:CC:72:9C
+            X509v3 Authority Key Identifier: 
+                keyid:BD:76:AC:78:09:70:A0:B8:10:5C:9A:5B:D7:71:93:A7:2F:9D:49:20
+                DirName:/C=ES/ST=Castellon/L=Castellon de la Plana/O=Especializacion Ciberseguridad/OU=iescaminas-edu/CN=Easy-RSA CA/emailAddress=jlleo@iescaminas-edu.mylocal
+                serial:78:02:A5:67:C4:E2:22:A1:74:B5:45:77:8F:2C:BB:7D:58:C3:3F:DF
+            X509v3 Key Usage: 
+                Certificate Sign, CRL Sign
+            X509v3 Subject Alternative Name: 
+                DNS:Easy-RSA Sub-CA
+    Signature Algorithm: sha512WithRSAEncryption
+    Signature Value:
+        1c:8e:bb:af:53:ac:59:73:0f:26:0e:f5:1e:9d:68:7b:a5:68:
+        f7:b5:e3:43:4d:c8:2f:4f:fc:db:53:f2:84:cb:d0:16:5f:55:
+        f9:78:70:d6:75:7e:d2:15:33:c6:81:0d:d7:ed:ce:1c:be:8a:
+        e8:22:bf:40:f5:72:3a:11:54:1e:71:f1:10:0d:25:1b:a2:a7:
+        89:86:4f:0c:59:ce:7d:85:ac:ce:75:b9:76:7f:ec:f1:d7:95:
+        78:ba:03:81:54:b1:a7:07:7d:fe:b2:b4:71:a4:5d:c4:a8:10:
+        64:cc:f4:a7:41:3d:bb:dd:43:5b:65:b0:b7:ec:f3:b3:8d:a6:
+        0d:b9:b6:d3:f1:a3:5f:2e:99:a8:54:d7:f0:60:23:0d:b1:3c:
+        f5:09:2f:60:e0:89:d7:a9:1e:a0:4c:fa:4f:15:a8:e4:a9:8d:
+        99:8a:34:fa:32:ca:0b:27:90:ff:0e:86:51:2d:64:3f:9a:34:
+        7a:06:7f:12:ce:10:64:ef:de:98:21:33:9f:1b:44:b8:b8:fd:
+        23:ae:f4:7c:b9:14:a0:42:24:56:5b:ac:21:bd:45:99:fd:b3:
+        57:d2:ee:82:86:a0:17:7f:bc:3c:07:f4:52:41:83:4b:ec:94:
+        ed:9a:09:21:c9:d5:5b:5d:d4:72:40:0d:e9:41:de:89:5f:6d:
+        bd:5e:2a:75
+-----BEGIN CERTIFICATE-----
+MIIFjjCCBHagAwIBAgIRAKSsttiHlg3P3k/k51ReYQ4wDQYJKoZIhvcNAQENBQAw
+gcYxCzAJBgNVBAYTAkVTMRIwEAYDVQQIDAlDYXN0ZWxsb24xHjAcBgNVBAcMFUNh
+c3RlbGxvbiBkZSBsYSBQbGFuYTEnMCUGA1UECgweRXNwZWNpYWxpemFjaW9uIENp
+YmVyc2VndXJpZGFkMRcwFQYDVQQLDA5pZXNjYW1pbmFzLWVkdTEUMBIGA1UEAwwL
+RWFzeS1SU0EgQ0ExKzApBgkqhkiG9w0BCQEWHGpsbGVvQGllc2NhbWluYXMtZWR1
+Lm15bG9jYWwwHhcNMjUwMjE1MTA0OTQwWhcNMjYwMjE1MTA0OTQwWjCB1TELMAkG
+A1UEBhMCRVMxEjAQBgNVBAgMCUNhc3RlbGxvbjEeMBwGA1UEBwwVQ2FzdGVsbG9u
+IGRlIGxhIFBsYW5hMScwJQYDVQQKDB5Fc3BlY2lhbGl6YWNpb24gQ2liZXJzZWd1
+cmlkYWQxIjAgBgNVBAsMGWllc2NhbWluYXMtZWR1LWludGVybWVkaWExGDAWBgNV
+BAMMD0Vhc3ktUlNBIFN1Yi1DQTErMCkGCSqGSIb3DQEJARYcamxsZW9AaWVzY2Ft
+aW5hcy1lZHUubXlsb2NhbDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+AMRYpdot0AOKdDLB6W7Y2Xjs2kZFiPmInsK9Zmw8PnP9QTDhRXrOKOi678kohhUR
+gbyPzkX7u1/GTjx2V98ZKZtuRTJL3YfsKrqdwK7laD2xpYx4Uk0up9Ep0B4wzbrK
+5J1qERCSQmbBN2kHTFsvZX/HOtVlejb3Ov0/AjjfalDS5FBx4RIOf4Gp0U4AM7mx
+t6rpx5SwXtrW5DVDQRtnht41P2aDNg+FgOVjQlsXW95gkWK9p2tE13WLu5qzbfuq
+Ik1/hR0pyh/D+Rak3E9b+a5xW5DJPoJiqO4gZc0a0L2lipk/xDZT/bh0qyjv9EcX
+RHj89eZAqNOL4RTaxChGMQ8CAwEAAaOCAWQwggFgMAwGA1UdEwQFMAMBAf8wHQYD
+VR0OBBYEFAAwJrLVd2OSh9w+vaAcrXpmzHKcMIIBBgYDVR0jBIH+MIH7gBS9dqx4
+CXCguBBcmlvXcZOnL51JIKGBzKSByTCBxjELMAkGA1UEBhMCRVMxEjAQBgNVBAgM
+CUNhc3RlbGxvbjEeMBwGA1UEBwwVQ2FzdGVsbG9uIGRlIGxhIFBsYW5hMScwJQYD
+VQQKDB5Fc3BlY2lhbGl6YWNpb24gQ2liZXJzZWd1cmlkYWQxFzAVBgNVBAsMDmll
+c2NhbWluYXMtZWR1MRQwEgYDVQQDDAtFYXN5LVJTQSBDQTErMCkGCSqGSIb3DQEJ
+ARYcamxsZW9AaWVzY2FtaW5hcy1lZHUubXlsb2NhbIIUeAKlZ8TiIqF0tUV3jyy7
+fVjDP98wCwYDVR0PBAQDAgEGMBoGA1UdEQQTMBGCD0Vhc3ktUlNBIFN1Yi1DQTAN
+BgkqhkiG9w0BAQ0FAAOCAQEAHI67r1OsWXMPJg71Hp1oe6Vo97XjQ03IL0/821Py
+hMvQFl9V+Xhw1nV+0hUzxoEN1+3OHL6K6CK/QPVyOhFUHnHxEA0lG6KniYZPDFnO
+fYWsznW5dn/s8deVeLoDgVSxpwd9/rK0caRdxKgQZMz0p0E9u91DW2Wwt+zzs42m
+Dbm20/GjXy6ZqFTX8GAjDbE89QkvYOCJ16keoEz6TxWo5KmNmYo0+jLKCyeQ/w6G
+US1kP5o0egZ/Es4QZO/emCEznxtEuLj9I670fLkUoEIkVlusIb1Fmf2zV9Lugoag
+F3+8PAf0UkGDS+yU7ZoJIcnVW13UckAN6UHeiV9tvV4qdQ==
+-----END CERTIFICATE-----
