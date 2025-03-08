@@ -1,22 +1,28 @@
-# RA3_2
+#RA3_2
 
-Para la realización de esta práctica, vamos realizarla sobre un contenedor docker. Dicho container va a tener acceso a la red debido a que vamos a estar implementando la red local de docker. Para ello, el primer paso va a ser realizar la descarga del repositorio de github:
-    git clone https://github.com/digininja/DVWA.git
+En la realización de esta práctica, vamos a realizar una serie de test de penetración sobre nuestra maquina dvwa, que consta de una aplicación web vulnerable. Para proceder, vamos a realizar la descarga de la imagen de Docker con el siguiente comando:
 
-    IMG CLONACIÓN
+    docker pull vulnerables/web-dvwa
 
+Una vez realizada la descarga, procederemos a su ejecución con el siguiente comando:
 
-Una vez descargado, accedemos al mismo para proceder con la creación de la imagen de docker a partir del Dockerfile facilitado:
+    docker run -d --name dvwa -p 80:80 vulnerables/web-dvwa
 
-    cd DVWA/
+Una vez ejecutada, podemos acceder a ella a través de nuestro navegador 
 
-    docker build -t dvwa:p2 .
+    ENLACE DIRECTO A INTERNET
 
-    IMG CONSTRUIDA
+Se nos mostrará un login inicial donde las credenciales son:
 
-    IMG IMAGENES
+    User: admin
+    Pass: password
 
-El siguiente paso va a ser crear el contenedor para la imagen recien creada, para ello, vamos a ejecutar el siguiente comando:
+Una vez dentro, deberemos acceder al apartado inferior y pulsar sobre #Create/Reset Database para iniciar el proceso de creación de la base de datos que luego nos permitirá realizar las diferentes pruebas de vulnerabilidades:
 
+    IMAGEN DATABASE
 
+Una vez finalizado el proceso, obtendremos el siguiente resultado:
 
+    IMAGEN FINAL
+
+ 
