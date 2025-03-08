@@ -1,26 +1,22 @@
-# RA3_1
+# RA3_2
 
-Introduction [INTRO](URL_TASKS) :
+Para la realización de esta práctica, vamos realizarla sobre un contenedor docker. Dicho container va a tener acceso a la red debido a que vamos a estar implementando la red local de docker. Para ello, el primer paso va a ser realizar la descarga del repositorio de github:
+    git clone https://github.com/digininja/DVWA.git
 
-# Tasks
+    IMG CLONACIÓN
 
-* [TASK_1](#URL_TASK_1): XXX
-* [TASK_2](#URL_TASK_2): XXX
 
-# Task_1
+Una vez descargado, accedemos al mismo para proceder con la creación de la imagen de docker a partir del Dockerfile facilitado:
 
-Intro...
+    cd DVWA/
 
-![IMG](URL_IMG)
+    docker build -t dvwa:p2 .
 
-Example code:
+    IMG CONSTRUIDA
 
-```
-$ git clone https://github.com/openssh/openssh-portable
-$ patch -p1 < ~/path/to/openssh.patch
-$ autoreconf
-$ ./configure
-$ make
-```
+    IMG IMAGENES
 
-# Task_2
+El siguiente paso va a ser crear el contenedor para la imagen recien creada, para ello, vamos a ejecutar el siguiente comando:
+
+
+
