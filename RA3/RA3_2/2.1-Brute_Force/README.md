@@ -30,10 +30,12 @@ username=^USER^&password=^PASS^&Login=Login
         Login=Login representa el botón de envío.
 
 :S=Welcome
+    
     → Indica la condición de éxito: si la respuesta del servidor contiene la palabra "Welcome", significa que el acceso fue exitoso.
 
 :H=Cookie\: PHPSESSID=j422143437vlsdgqs0t1385420; security=medium
-    → Agrega una cabecera HTTP con cookies:
+   
+     → Agrega una cabecera HTTP con cookies:
 
         PHPSESSID=j422143437vlsdgqs0t1385420 
             Identificador de sesión que puede ser necesario si el sistema lo requiere.
