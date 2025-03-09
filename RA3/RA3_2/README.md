@@ -4,6 +4,8 @@ En la realización de esta práctica, vamos a realizar una serie de test de pene
 
     docker pull vulnerables/web-dvwa
 
+![ImageDownload](./images/2.0_DownloadDockerImage.png)
+
 Una vez realizada la descarga, procederemos a su ejecución con el siguiente comando:
 
     docker run -d --name dvwa -p 80:80 vulnerables/web-dvwa
@@ -19,8 +21,7 @@ Se nos mostrará un login inicial donde las credenciales son:
 
 Una vez dentro, deberemos acceder al apartado inferior y pulsar sobre #Create/Reset Database para iniciar el proceso de creación de la base de datos que luego nos permitirá realizar las diferentes pruebas de vulnerabilidades:
 
-![Reset DB](images/2.0_Database.png)
-    IMAGEN DATABASE
+![Reset DB](./images/2.0_Database.png)
 
 Una vez finalizado el proceso, obtendremos el siguiente resultado:
 
