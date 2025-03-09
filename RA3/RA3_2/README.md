@@ -10,7 +10,7 @@ Una vez realizada la descarga, procederemos a su ejecución con el siguiente com
 
 Una vez ejecutada, podemos acceder a ella a través de nuestro navegador 
 
-    ENLACE DIRECTO A INTERNET
+[http://localhost:80](http://localhost:80)
 
 Se nos mostrará un login inicial donde las credenciales son:
 
