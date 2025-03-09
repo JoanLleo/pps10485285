@@ -19,6 +19,7 @@ Se nos mostrará un login inicial donde las credenciales son:
 
 Una vez dentro, deberemos acceder al apartado inferior y pulsar sobre #Create/Reset Database para iniciar el proceso de creación de la base de datos que luego nos permitirá realizar las diferentes pruebas de vulnerabilidades:
 
+![Reset DB](images/2.0_Database.png)
     IMAGEN DATABASE
 
 Una vez finalizado el proceso, obtendremos el siguiente resultado:
