@@ -1,6 +1,6 @@
 El primer paso es sacar la cookie de sesión de admin para poder acceder al directorio específico para poder realizar las pruebas de penetración, para ello accederemos a nuestro navegador para iniciar sesión, y posteriormente pulsaremos la tecla F12 para acceder a la ruta Aplication > Cookies > PHPSESSID y almacenaremos dicho valor:
 
-    IMG COOKIE
+![ImageDownload](./images/2.1.1_cookie.png)
 
 En este apartado, vamos a realizar un ataque de fuerza bruta para conseguir acceso a nuestra página web vulnerable, haciendo uso de hidra en la versión 9.3 junto a un par de wordlists con posibles nombres de usuarios y contraseñas filtradas. Para ello vamos a implementar el siguiente comando:
 
@@ -48,4 +48,6 @@ username=^USER^&password=^PASS^&Login=Login
             Establece un nivel de seguridad en la plataforma de pruebas.
 
 
+Y una vez finalizada la ejecución, podemos observar que ha encontrado la contraseña:
 
+![ImageDownload](./images/2.1.2_FinEjecucion.png)
