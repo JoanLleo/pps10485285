@@ -23,4 +23,4 @@ Una vez dentro, deberemos acceder al apartado inferior y pulsar sobre #Create/Re
 
 Una vez finalizado el proceso, obtendremos el siguiente resultado:
 
-    !(images/2.0_AccesoDVWA) 
+    !(images/2.0_AccesoDVWA.png) 
