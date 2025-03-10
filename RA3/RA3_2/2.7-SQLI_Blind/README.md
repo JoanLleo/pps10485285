@@ -1,6 +1,7 @@
 En este apartado, vamos a realizar la ejecución de un script en python, para poder averiguar la versión de la base de datos que está ejecutando el servidor. Esto nos permite buscar vulnerabilidades en internet para poder realizar la explotación de la misma. Para ello el primer paso es crear el código en python:
 
 '''
+
 import requests
 from requests.structures import CaseInsensitiveDict
 
@@ -26,6 +27,7 @@ for i in range(1, length+1):
             print(chr(s), end='')
             break
         j += 1
+
 '''
 
 Una vez creado el archivo, podemos proceder a su ejecución con el siguiente comando:
