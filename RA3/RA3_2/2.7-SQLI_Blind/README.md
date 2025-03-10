@@ -28,7 +28,8 @@ for i in range(1, length+1):
             break
         j += 1
 
-'''python
+
+```
 
 Una vez creado el archivo, podemos proceder a su ejecución con el siguiente comando:
 
