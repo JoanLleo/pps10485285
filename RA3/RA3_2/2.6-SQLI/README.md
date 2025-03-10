@@ -24,7 +24,7 @@ Para hacer una prueba, vamos a acceder a la siguiente ruta:
 
 [Enlace](http://localhost/vulnerabilities/sqli/)
 
-Y una vez dentro, ejecutaremos el comando y podremos observar el siguiente resultado:
+Y una vez dentro, ejecutaremos el comando y podremos observar que nos ha extraido el nombre de usuario y el "surname" que viene a ser la contraseña en texto plano:
 
 ![Imagen](./images/2.6.1_SQLI.png)
 
