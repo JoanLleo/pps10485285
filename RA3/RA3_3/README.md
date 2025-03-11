@@ -1,26 +1,28 @@
-# RA3_1
+#RA3_2
 
-Introduction [INTRO](URL_TASKS) :
+En la realización de esta práctica, vamos a realizar una serie de test de penetración sobre nuestra maquina dvwa, que consta de una aplicación web vulnerable. Para proceder, vamos a realizar la descarga de la imagen de Docker con el siguiente comando:
 
-# Tasks
+    docker pull vulnerables/web-dvwa
 
-* [TASK_1](#URL_TASK_1): XXX
-* [TASK_2](#URL_TASK_2): XXX
+![ImageDownload](./images/2.0_DownloadDockerImage.png)
 
-# Task_1
+Una vez realizada la descarga, procederemos a su ejecución con el siguiente comando:
 
-Intro...
+    docker run -d --name dvwa -p 80:80 vulnerables/web-dvwa
 
-![IMG](URL_IMG)
+Una vez ejecutada, podemos acceder a ella a través de nuestro navegador 
 
-Example code:
+[http://localhost:80](http://localhost:80)
 
-```
-$ git clone https://github.com/openssh/openssh-portable
-$ patch -p1 < ~/path/to/openssh.patch
-$ autoreconf
-$ ./configure
-$ make
-```
+Se nos mostrará un login inicial donde las credenciales son:
 
-# Task_2
+    User: admin
+    Pass: password
+
+Una vez dentro, deberemos acceder al apartado inferior y pulsar sobre #Create/Reset Database para iniciar el proceso de creación de la base de datos que luego nos permitirá realizar las diferentes pruebas de vulnerabilidades:
+
+![Reset DB](./images/2.0_Database.png)
+
+Una vez finalizado el proceso, obtendremos el siguiente resultado:
+
+![Acceso Web](./images/2.0_AccesoWeb.png) 
