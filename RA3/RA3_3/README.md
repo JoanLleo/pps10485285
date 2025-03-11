@@ -27,6 +27,8 @@ Una vez finalizado el proceso, obtendremos el siguiente resultado:
 
 ![Acceso Web](./images/2.0_AccesoWeb.png) 
 
+La estructura del directorio de la práctica, es la siguiente:
+
 ```
 ├── 3.1-Brute_Force
 │   ├── README.md
