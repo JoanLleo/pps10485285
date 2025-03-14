@@ -1,3 +1,8 @@
+
+# 2.3-CSFR
+
+# LOW
+
 En este ejercicio, vamos a realizar la ejecución de un cambio automatico de la contraseña del usuario. Para ello vamos exponer un archivo html en nuestro servidor python para que actue sobre nuestra maquina DVWA cuando se acceda al contenido del mismo. Para ello vamos a indicar el siguiente contenido en nuestro archivo html:
 
 ```html
