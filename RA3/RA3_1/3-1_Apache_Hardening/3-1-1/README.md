@@ -27,7 +27,7 @@ Accedemos a nuestro Container desde el navegador:
 
 ## Comprobaciones
 
-###Módulo autoindex deshabilitado
+### Módulo autoindex deshabilitado
 
 	docker exec -it apache-P1 bash
 
@@ -35,7 +35,7 @@ Accedemos a nuestro Container desde el navegador:
 
 	apachectl -M > Buscar autoindex y no encontrar el modulo 
 	
-###Módulo headers habilitado
+### Módulo headers habilitado
 
 	apachectl -M | grep headers
 
@@ -45,7 +45,7 @@ Accedemos a nuestro Container desde el navegador:
 ![img2](./fotos/Headers_Autoindex.png)
 
 
-###Verificar la cabecera HSTS (Strict-Transport-Security)
+### Verificar la cabecera HSTS (Strict-Transport-Security)
 
         curl -I -k https://localhost:4443
 
@@ -53,7 +53,7 @@ Donde el resultado esperado es:
 
 	Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-###Verificar la cabecera CSP (Content-Security-Policy)
+### Verificar la cabecera CSP (Content-Security-Policy)
 
 	curl -I -k https://localhost:4443
 
