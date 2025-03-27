@@ -1,3 +1,8 @@
+# 3.1.1
+
+
+## Creación del container
+
 Para realizar este ejercicio, nos podemos bajar la imagen directamente de dockerhub
 
 	docker pull pps10485285/ra3:3-1-1
@@ -21,6 +26,7 @@ Comprobar que el módulo autoindex está deshabilitado
 
 	docker exec -it apache-P1 bash
 
+![img1](./fotos/Docker Setup P1.png)
 
 	apachectl -M | grep autoindex
 
