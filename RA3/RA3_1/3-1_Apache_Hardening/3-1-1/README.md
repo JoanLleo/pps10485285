@@ -18,35 +18,47 @@ Creamos el contenedor y lo ejecutamos
 
 	docker run -d --name apache-P1 -p 4443:443 apache:p1
 
+![img1](./fotos/DockerSetupP1.png)
+
 Accedemos a nuestro Container desde el navegador:
 
-	https://localhost:4443
+[Acceso](https://localhost:4443)
 
-Comprobar que el módulo autoindex está deshabilitado
+
+## Comprobaciones
+
+###Módulo autoindex deshabilitado
 
 	docker exec -it apache-P1 bash
-
-![img1](./fotos/DockerSetupP1.png)
 
 	apachectl -M | grep autoindex
 
 	apachectl -M > Buscar autoindex y no encontrar el modulo 
 	
-Verificar que el módulo headers está habilitado
+###Módulo headers habilitado
 
 	apachectl -M | grep headers
 
 	apachectl -M > Buscar headers_module (shared)
 
-Verificar la cabecera HSTS (Strict-Transport-Security)
+
+![img2](./fotos/Headers_Autoindex.png)
+
+
+###Verificar la cabecera HSTS (Strict-Transport-Security)
 
         curl -I -k https://localhost:4443
 
-		Strict-Transport-Security: max-age=31536000; includeSubDomains
+Donde el resultado esperado es:
 
-Verificar la cabecera CSP (Content-Security-Policy)
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+###Verificar la cabecera CSP (Content-Security-Policy)
 
 	curl -I -k https://localhost:4443
 
-		Content-Security-Policy: default-src 'self'; script-src 'self'
+Donde el resultado esperado es:
+	
+	Content-Security-Policy: default-src 'self'; script-src 'self'
 
+![img3](./fotos/HSTS_CSP.png)
