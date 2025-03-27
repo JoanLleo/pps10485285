@@ -26,7 +26,7 @@ Comprobar que el módulo autoindex está deshabilitado
 
 	docker exec -it apache-P1 bash
 
-![img1]("./fotos/Docker Setup P1.png")
+![img1](./fotos/DockerSetupP1.png)
 
 	apachectl -M | grep autoindex
 
