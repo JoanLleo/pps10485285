@@ -34,7 +34,7 @@ El proceso a realizar es el mismo, realizamos la subida del fichero pero antes d
 
 Es por ello que tras cambiar dicha cabecera a formato imagen y enviar el archivo, este se envia correctamente:
 
-![cambio](./images/cabio.png)
+![cambio](./images/cambio.png)
 
 Y tras acceder al mismo desde la ruta facilitada, podemos obtener una reverse shell:
 
