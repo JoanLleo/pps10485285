@@ -5,6 +5,7 @@ La finalidad de este ejercicio, es realizar el análisis de un codigo malicioso 
 ![fallo](./images/falloejecucion.png)
 
 ![video](./images/pruebaError.gif)
+[Enlace Video](./images/pruebaError.mp4)
 [Link 1](https://aftabsama.com/writeups/dvwa/content-security-policy-csp-bypass/)
 
 [Link 2](https://puriayush29.medium.com/dvwa-csp-bypass-4a746830d5a1)
