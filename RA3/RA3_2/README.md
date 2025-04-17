@@ -30,16 +30,18 @@ Una vez finalizado el proceso, obtendremos el siguiente resultado:
 La estructura del directorio de la práctica, es la siguiente:
 
 ```
+.
 ├── 2.1-Brute_Force
 │   ├── README.md
-│   ├── coockie
 │   └── images
 │       ├── 2.1.1_cookie.png
-│       └── 2.1.2_FinEjecucion.png
+│       ├── 2.1.2_FinEjecucion.png
+│       └── imagenlow.png
 ├── 2.10-CSP
 │   ├── README.md
 │   └── images
-│       └── falloejecucion.png
+│       ├── falloejecucion.png
+│       └── pruebaError.mp4
 ├── 2.11-JS_Attacks
 │   ├── README.md
 │   └── images
@@ -70,11 +72,15 @@ La estructura del directorio de la práctica, es la siguiente:
 │   └── images
 │       ├── 2.5.1_FU.png
 │       ├── 2.5.2_ReverseShell.png
-│       └── 2.5.3_Loading.png
+│       ├── 2.5.3_Loading.png
+│       ├── cambio.png
+│       ├── intercepcion.png
+│       └── reverse.png
 ├── 2.6-SQLI
 │   ├── README.md
 │   └── images
-│       └── 2.6.1_SQLI.png
+│       ├── low.png
+│       └── mid.png
 ├── 2.7-SQLI_Blind
 │   ├── README.md
 │   ├── assets
@@ -85,13 +91,15 @@ La estructura del directorio de la práctica, es la siguiente:
 │   ├── README.md
 │   └── images
 │       ├── 2.8.1_Cookie1.png
-│       └── 2.8.2_Cookie2.png
+│       ├── 2.8.2_Cookie2.png
+│       └── time.png
 ├── 2.9-DOM_XSS
 │   ├── README.md
 │   └── images
 │       ├── 2.9.1_Vuln.png
 │       ├── 2.9.2_XSS.png
-│       └── 2.9.3_Cookie.png
+│       ├── 2.9.3_Cookie.png
+│       └── low.png
 ├── 2.9.1-Reflected_XSS
 │   ├── README.md
 │   └── images
@@ -101,7 +109,9 @@ La estructura del directorio de la práctica, es la siguiente:
 │   ├── README.md
 │   └── images
 │       ├── AccesoUsuario2.png
-│       └── Script.png
+│       ├── Script.png
+│       ├── low1.png
+│       └── low2.png
 ├── README.md
 └── images
     ├── 2.0_AccesoWeb.png
