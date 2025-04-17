@@ -1,3 +1,6 @@
+# 2.11-JS Attack
+
+## LOW
 En esta práctica, vamos a comprobar si somos vulnerables a ataques de JS. Para ello, nos presentan una ventana donde deberemos enviar la palabra success para ganar. Si escribimos dicha palabra y al enviamos, obtenemos un mensaje diciendonos que el token es invalido:
 
 ![inavlid](./images/invalid.png)
