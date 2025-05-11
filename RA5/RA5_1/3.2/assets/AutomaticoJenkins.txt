@@ -1,0 +1,165 @@
+Started by user a
+Obtained RA5/RA5_1/3.2/Jenkinsfile.docker from git https://github.com/JoanLleo/pps10485285.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Calculadora
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Calculadora/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/JoanLleo/pps10485285.git # timeout=10
+Fetching upstream changes from https://github.com/JoanLleo/pps10485285.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/JoanLleo/pps10485285.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision a9faf0de48411c9c5c715b5df0d172dcfc991a81 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a9faf0de48411c9c5c715b5df0d172dcfc991a81 # timeout=10
+Commit message: "Preparación entorno"
+ > git rev-list --no-walk a9faf0de48411c9c5c715b5df0d172dcfc991a81 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Calculadora/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/JoanLleo/pps10485285.git # timeout=10
+Fetching upstream changes from https://github.com/JoanLleo/pps10485285.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/JoanLleo/pps10485285.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision a9faf0de48411c9c5c715b5df0d172dcfc991a81 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a9faf0de48411c9c5c715b5df0d172dcfc991a81 # timeout=10
+Commit message: "Preparación entorno"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Crear Imagen Docker)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ ls -l
+total 8
+drwxr-xr-x 6 jenkins jenkins 4096 May 11 09:36 RA3
+drwxr-xr-x 3 jenkins jenkins 4096 May 11 09:36 RA5
+[Pipeline] sh
++ docker build -t my-jenkins-pps10485285:latest -f RA5/RA5_1/3.2/Dockerfile .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 395B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.10-slim
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/python:3.10-slim@sha256:e1013c40c02a7875ae30c78c69b68ea7bee31713e8ac1c0f5469c1206258d6d7
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 16.30MB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/3] WORKDIR /app
+#6 CACHED
+
+#7 [3/3] COPY . /app
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 writing image sha256:d7dd83f91e695309f861a1a4a4d528a25333c847bdbbb25c5f3e7fca87178173 done
+#8 naming to docker.io/library/my-jenkins-pps10485285:latest 0.0s done
+#8 DONE 0.0s
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ejecutar Contenedor Docker)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ ls -l RA5/RA5_1/3.2
+total 24
+-rw-r--r-- 1 jenkins jenkins  514 May 11 09:54 calculadora.py
+-rw-r--r-- 1 jenkins jenkins  156 May 11 09:36 docker-compose.yml
+-rw-r--r-- 1 jenkins jenkins  356 May 11 10:05 Dockerfile
+-rw-r--r-- 1 jenkins jenkins 2216 May 11 10:14 Jenkinsfile.docker
+drwxr-xr-x 2 root    root    4096 May 11 09:55 __pycache__
+-rw-r--r-- 1 jenkins jenkins  511 May 11 09:54 test_calculator.py
+[Pipeline] sh
++ pwd
++ docker run -d --name test-jenkins-container -v /var/lib/jenkins/workspace/Calculadora/RA5/RA5_1/3.2:/app my-jenkins-pps10485285:latest sleep infinity
+f62e934f5769511a8d1bf823d681e954d5c769ea9f54c4cdf76847f2218baa31
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ejecutar Pruebas en Docker)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker exec test-jenkins-container bash -c cd /app && python3 -m unittest test_calculator.py
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Limpiar Contenedores)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker stop test-jenkins-container
+test-jenkins-container
++ docker rm test-jenkins-container
+test-jenkins-container
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ docker system prune -f
+Deleted build cache objects:
+31nt6lywd6q46hgze3tournu6
+5acezq30lvhbsaad9nk066ymd
+qvfi0hhjmgrkcdo05wznhu3kw
+07mhp1k8jh5elakx5auee2wiz
+
+Total reclaimed space: 16.29MB
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

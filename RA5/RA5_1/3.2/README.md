@@ -72,3 +72,25 @@ El flujo de ejecución del pipeline es el siguiente:
 - `Jenkinsfile.docker`: Define las etapas del pipeline de Jenkins.
 - `test_calculator.py`: Contiene las pruebas unitarias de la aplicación Python.
 - `calculadora.py`: Contiene la implementación de la calculadora en Python.
+
+## Configuración de Jenkins
+
+1. **Docker Pipeline**:
+
+Instalamos el módulo de Jenkins para implementar contenedores en pipelines
+
+![DockerPipeline](./images/pipe.png)
+
+2. **Configuración Jenkins**:
+
+Configuramos la pipeline de Jenkins para la ejecución de proceso:
+
+![Pipeline](./images/pipeline.png)
+
+3. **Resultados**:
+
+Una vez finalizado el proceso, podemos verificar que se ha ejecutado correctamente:
+
+![resultados](./images/resultados.png)
+
+Si queremos ver el registro entero, se puede visualizar en el siguiente [enlace](./assets/AutomaticoJenkins.txt)
