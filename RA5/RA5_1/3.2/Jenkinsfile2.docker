@@ -18,8 +18,9 @@ pipeline {
         stage('Crear Imagen Docker') {
             steps {
                 script {
-                    // Crear la imagen Docker desde el Dockerfile
-                    sh 'docker build -t ${DOCKER_IMAGE} -f Dockerfile .'
+                    // Cambiar la ruta si el Dockerfile está en una subcarpeta
+                    sh 'ls -l' // Verificar si el Dockerfile está presente
+                    sh 'docker build -t ${DOCKER_IMAGE} -f RA5/RA5_1/3.2/Dockerfile .'
                 }
             }
         }
@@ -27,6 +28,9 @@ pipeline {
         stage('Ejecutar Contenedor Docker') {
             steps {
                 script {
+                    // Verificar que los archivos estén en la ruta correcta
+                    sh 'ls -l RA5/RA5_1/3.2'
+
                     // Levantar el contenedor con el volumen del workspace de Jenkins
                     // Se monta el directorio donde están los archivos en el contenedor
                     sh """
@@ -67,3 +71,4 @@ pipeline {
         }
     }
 }
+
