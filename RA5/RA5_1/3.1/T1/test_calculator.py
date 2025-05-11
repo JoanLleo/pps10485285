@@ -9,7 +9,7 @@ class TestCalculadora(unittest.TestCase):
         self.assertEqual(self.calc.multiplicar(3, 4), 12)
 
     def test_multiplicar_flotantes(self):
-        self.assertAlmostEqual(self.calc.multiplicar(2.0, 4.0), 10.0)
+        self.assertAlmostEqual(self.calc.multiplicar(2.5, 4.0), 10.0)
 
     def test_multiplicar_con_cero(self):
         self.assertEqual(self.calc.multiplicar(0, 100), 0)

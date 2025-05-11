@@ -82,3 +82,74 @@ docker logs jenkins
 ```
 
 Para más ayuda, consulta la [documentación oficial de Jenkins](https://www.jenkins.io/doc/) o la [página de la imagen en Docker Hub](https://hub.docker.com/r/jenkins/jenkins).
+
+
+# Comprobaciones funcionamiento Jenkins
+
+Una vez tengamos la pipeline creada, le hemos indicado el siguiente Jenkinsfile para que cree un entorno virtual de Python y pueda ejecutar los test del repositorio:
+
+```Jenkins
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar Repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/JoanLleo/pps10485285.git'
+            }
+        }
+
+        stage('Moverse a la carpeta del proyecto') {
+            steps {
+                dir('RA5/RA5_1/3.1/T1') {
+                    echo 'En la carpeta del proyecto'
+                }
+            }
+        }
+
+        stage('Instalar Dependencias') {
+            steps {
+                dir('RA5/RA5_1/3.1/T1') {
+                    sh 'python3 -m venv venv && . venv/bin/activate && pip install --upgrade pip'
+                }
+            }
+        }
+
+        stage('Ejecutar Pruebas') {
+            steps {
+                dir('RA5/RA5_1/3.1/T1') {
+                    sh '. venv/bin/activate && python -m unittest discover -s . -p "test_*.py"'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Todas las etapas se completaron correctamente.'
+        }
+        failure {
+            echo '❌ Ocurrió un error en la canalización.'
+        }
+    }
+}
+```
+
+![code](./images/code.png)
+
+Y tras ejecutarlo, podemos observar que se ha realizado la ejecución de los test de manera satisfactoria:
+
+![exec](./images/exec.png)
+
+Si observamos los logs del terminal, podemos observar todas las acciones realizadas:
+
+![logs](./images/logs1.png)
+
+![logs](./images/logs2.png)
+
+Y si realizamos un cambio en el test, podemos observar que nos arroja el error dentro del mismo:
+
+![logs](./images/failure1.png)
+![logs](./images/failure2.png)
+
+
