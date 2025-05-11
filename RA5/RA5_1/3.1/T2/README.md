@@ -23,7 +23,7 @@ Nos creamos una imagen con Jenkins y el entorno virtual de python instalados
 
 ```bash
 docker build -t dockerfile .
-''' 
+``` 
 
 ### 3. Ejecuta el contenedor de Jenkins
 Inicia un contenedor Docker con Jenkins usando el siguiente comando:
