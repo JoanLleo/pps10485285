@@ -132,6 +132,7 @@ Si observamos los logs del terminal, podemos observar todas las acciones realiza
 ![logs](./images/logs1.png)
 
 ![logs](./images/logs2.png)
+[Logs](./images/logs.txt)
 
 Y si realizamos un cambio en el test, podemos observar que nos arroja el error dentro del mismo:
 
