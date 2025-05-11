@@ -17,7 +17,7 @@ Incluye también en el repositorio:
 
 
 ## Esquema del proyecto
-
+```
 RA5_1/
 .
 ├── 3.1
@@ -58,3 +58,4 @@ RA5_1/
 │   │   └── resultados.png
 │   └── test_calculator.py
 └── README.md
+```
