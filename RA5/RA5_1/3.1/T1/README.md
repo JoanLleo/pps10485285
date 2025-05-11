@@ -82,3 +82,17 @@ En siguientes tareas se integrará este proyecto con Jenkins para:
 - Automatizar el despliegue (CI/CD)
 
 ---
+
+# PRUEBAS DE EJECUCIÓN
+
+## Calculadora y Test funcionan
+
+![calc](./images/CalcyTest.png)
+
+## Cambio en el test para verficar acciones ante fallos
+
+![cambio](./images/cambio.png)
+
+## Test fallo 
+
+![fallo](./images/fallo.png)
