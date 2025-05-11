@@ -1,15 +1,14 @@
-# Usa la imagen oficial de Jenkins LTS como base
-FROM jenkins/jenkins:lts
+# Dockerfile
+FROM python:3.10-slim
 
-USER root
+# Crea directorio de la app
+WORKDIR /app
 
-# Instala Python 3 y pip
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-venv && \
-    apt-get clean
+# Copia el código
+COPY . .
 
-# Verifica versiones instaladas
-RUN python3 --version && pip3 --version
+# Instala dependencias si las hubiera (agrega requirements.txt si hace falta)
+# RUN pip install -r requirements.txt
 
-# Cambia el usuario de nuevo a jenkins
-USER jenkins
+# Ejecuta los tests por defecto (esto puede cambiar según Jenkinsfile)
+CMD ["python3", "-m", "unittest", "test_calculadora.py"]

@@ -1,14 +1,8 @@
+# docker-compose.yml
 version: '3.8'
+
 services:
-  jenkins:
-    image: my-jenkins-pps10485285:latest
-    container_name: jenkins-container
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-    environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
-volumes:
-  jenkins_home:
+  app:
+    build: .
+    container_name: calculadora_app
+    command: python3 -m unittest test_calculadora.py

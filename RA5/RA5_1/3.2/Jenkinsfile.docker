@@ -1,9 +1,11 @@
 pipeline {
-    agent any // Usa el nodo local en lugar de docker:dind
+    agent any
 
     environment {
         DOCKER_IMAGE = 'my-jenkins-pps10485285'
         DOCKER_TAG = 'latest'
+        APP_PATH = 'RA5/RA5_1/3.2'
+        TEST_PATH = 'RA5/RA5_1/3.1/T1'
     }
 
     stages {
@@ -15,43 +17,39 @@ pipeline {
 
         stage('Crear Imagen Docker') {
             steps {
-                dir('RA5/RA5_1/3.2') {
-                    sh '''
-                        docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-                    '''
+                dir("${APP_PATH}") {
+                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile ."
                 }
             }
         }
 
         stage('Ejecutar Contenedor Docker') {
             steps {
-                sh '''
+                // Ejecuta el contenedor en segundo plano con un nombre identificable
+                sh """
                     docker run -d --name test-jenkins-container \
-                    -v $(pwd)/RA5/RA5_1/3.2:/var/jenkins_home/workspace \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG}
-                '''
+                    -v $(pwd)/${APP_PATH}:/app \
+                    ${DOCKER_IMAGE}:${DOCKER_TAG} sleep infinity
+                """
             }
         }
 
         stage('Ejecutar Pruebas en Docker') {
             steps {
-                sh '''
+                // Cambiamos al directorio correcto y ejecutamos los tests
+                sh """
                     docker exec test-jenkins-container bash -c "
-                        cd /var/jenkins_home/workspace/RA5/RA5_1/3.1/T1 &&
-                        python3 -m venv venv &&
-                        . venv/bin/activate &&
-                        pip install --upgrade pip &&
-                        python -m unittest discover -s . -p 'test_*.py'"
-                '''
+                        cd /app/../3.1/T1 &&
+                        python3 -m unittest discover -s . -p 'test_*.py'
+                    "
+                """
             }
         }
 
         stage('Ejecutar Docker Compose') {
             steps {
-                dir('RA5/RA5_1/3.2') {
-                    sh '''
-                        docker-compose -f docker-compose.yml up -d
-                    '''
+                dir("${APP_PATH}") {
+                    sh 'docker-compose -f docker-compose.yml up -d --build'
                 }
             }
         }
@@ -59,14 +57,12 @@ pipeline {
 
     post {
         always {
-            // Ejecutar limpieza dentro de un nodo
-            node('master') {
-                sh '''
-                    docker stop test-jenkins-container || true
-                    docker rm test-jenkins-container || true
-                    docker-compose -f RA5/RA5_1/3.2/docker-compose.yml down || true
-                '''
-            }
+            echo '🧹 Limpiando contenedores y recursos...'
+            sh '''
+                docker stop test-jenkins-container || true
+                docker rm test-jenkins-container || true
+                docker-compose -f RA5/RA5_1/3.2/docker-compose.yml down || true
+            '''
         }
         success {
             echo '✅ Todas las etapas se completaron correctamente.'
@@ -76,3 +72,4 @@ pipeline {
         }
     }
 }
+
