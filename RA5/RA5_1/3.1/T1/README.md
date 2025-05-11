@@ -82,4 +82,3 @@ En siguientes tareas se integrará este proyecto con Jenkins para:
 - Automatizar el despliegue (CI/CD)
 
 ---
-

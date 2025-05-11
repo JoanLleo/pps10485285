@@ -12,22 +12,23 @@ Este documento describe cómo instalar y configurar Jenkins en un contenedor Doc
 
 ## Pasos de Instalación
 
-### 1. Descarga la imagen de Jenkins
-Descarga la versión LTS (Long Term Support) de Jenkins desde Docker Hub:
-```bash
-docker pull jenkins/jenkins:lts
-```
-
-### 2. Crea un directorio para persistir datos
+### 1. Crea un directorio para persistir datos
 Crea un directorio en tu máquina para almacenar las configuraciones y datos de Jenkins:
 ```bash
 mkdir ~/jenkins_home
 ```
 
+### 2. Ejecución del Dockerfile 
+Nos creamos una imagen con Jenkins y el entorno virtual de python instalados
+
+```bash
+docker build -t dockerfile .
+''' 
+
 ### 3. Ejecuta el contenedor de Jenkins
 Inicia un contenedor Docker con Jenkins usando el siguiente comando:
 ```bash
-docker run -d -p 8080:8080 -p 50000:50000 -v ~/jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
+docker run -d -p 8080:8080 -p 50000:50000 -v ~/jenkins_home:/var/jenkins_home --name jenkins dockerfile
 ```
 **Explicación de los parámetros:**
 - `-d`: Ejecuta el contenedor en segundo plano.
@@ -35,14 +36,13 @@ docker run -d -p 8080:8080 -p 50000:50000 -v ~/jenkins_home:/var/jenkins_home --
 - `-p 50000:50000`: Mapea el puerto para agentes de Jenkins (usado para nodos esclavos).
 - `-v ~/jenkins_home:/var/jenkins_home`: Monta el directorio local `~/jenkins_home` para persistir datos.
 - `--name jenkins`: Asigna el nombre "jenkins" al contenedor.
-- `jenkins/jenkins:lts`: Usa la imagen LTS de Jenkins.
+- `dockerfile`: Usa la imagen LTS de Jenkins.
 
 ### 4. Verifica que el contenedor esté corriendo
 Confirma que el contenedor está activo:
 ```bash
 docker ps
 ```
-Deberías ver el contenedor `jenkins` en la lista.
 
 ### 5. Accede a Jenkins
 Abre un navegador y navega a:
@@ -67,24 +67,6 @@ Sigue las instrucciones en la interfaz web:
 ### 8. ¡Listo!
 Jenkins estará configurado y listo para usar.
 
-## Comandos Útiles
-
-- **Detener el contenedor**:
-  ```bash
-  docker stop jenkins
-  ```
-- **Iniciar el contenedor**:
-  ```bash
-  docker start jenkins
-  ```
-- **Ver logs del contenedor** (para depuración):
-  ```bash
-  docker logs jenkins
-  ```
-- **Eliminar el contenedor** (si ya no lo necesitas):
-  ```bash
-  docker rm jenkins
-  ```
 
 ## Notas Adicionales
 
