@@ -2,54 +2,63 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'my-jenkins-pps10485285'
-        DOCKER_TAG = 'latest'
+        DOCKER_IMAGE = 'my-jenkins-pps10485285:latest'
+        CONTAINER_NAME = 'test-jenkins-container'
+        APP_DIR = '/app'
     }
 
     stages {
-        stage('Clonar Repositorio') {
+        stage('Checkout SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/JoanLleo/pps10485285.git'
+                // Clonar el repositorio
+                checkout scm
             }
         }
 
         stage('Crear Imagen Docker') {
             steps {
-                dir('RA5/RA5_1/3.2') {
-                    sh '''
-                        docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile .
-                    '''
+                script {
+                    // Cambiar la ruta si el Dockerfile está en una subcarpeta
+                    sh 'ls -l' // Verificar si el Dockerfile está presente
+                    sh 'docker build -t ${DOCKER_IMAGE} -f RA5/RA5_1/3.2/Dockerfile .'
                 }
             }
         }
 
         stage('Ejecutar Contenedor Docker') {
             steps {
-                sh '''
-                    docker run -d --name test-jenkins-container \
-                    -v $(pwd)/RA5/RA5_1/3.2:/app \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG} sleep infinity
-                '''
+                script {
+                    // Verificar que los archivos estén en la ruta correcta
+                    sh 'ls -l RA5/RA5_1/3.2'
+
+                    // Levantar el contenedor con el volumen del workspace de Jenkins
+                    // Se monta el directorio donde están los archivos en el contenedor
+                    sh """
+                    docker run -d --name ${CONTAINER_NAME} -v \$(pwd)/RA5/RA5_1/3.2:${APP_DIR} ${DOCKER_IMAGE} sleep infinity
+                    """
+                }
             }
         }
 
         stage('Ejecutar Pruebas en Docker') {
             steps {
-                sh '''
-                    docker exec test-jenkins-container bash -c "
-                        cd /app &&
-                        python3 -m unittest test_calculator.py
-                    "
-                '''
+                script {
+                    // Ejecutar las pruebas dentro del contenedor Docker
+                    sh """
+                    docker exec ${CONTAINER_NAME} bash -c "cd ${APP_DIR} && python3 -m unittest test_calculator.py"
+                    """
+                }
             }
         }
 
-        stage('Ejecutar Docker Compose') {
+        stage('Limpiar Contenedores') {
             steps {
-                dir('RA5/RA5_1/3.2') {
-                    sh '''
-                        docker compose -f docker-compose.yml up -d --build
-                    '''
+                script {
+                    // Detener y eliminar el contenedor después de las pruebas
+                    sh """
+                    docker stop ${CONTAINER_NAME}
+                    docker rm ${CONTAINER_NAME}
+                    """
                 }
             }
         }
@@ -57,18 +66,8 @@ pipeline {
 
     post {
         always {
-            echo '🧹 Limpiando contenedores y recursos...'
-            sh '''
-                docker stop test-jenkins-container || true
-                docker rm test-jenkins-container || true
-                docker compose -f RA5/RA5_1/3.2/docker-compose.yml down || true
-            '''
-        }
-        success {
-            echo '✅ Todas las etapas se completaron correctamente.'
-        }
-        failure {
-            echo '❌ Ocurrió un error en la canalización.'
+            // Limpiar cualquier otro recurso, como contenedores Docker
+            sh 'docker system prune -f'
         }
     }
 }
