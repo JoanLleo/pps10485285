@@ -83,7 +83,7 @@ Instalamos el módulo de Jenkins para implementar contenedores en pipelines
 
 2. **Configuración Jenkins**:
 
-Configuramos la pipeline de Jenkins para la ejecución de proceso:
+Configuramos la pipeline de Jenkins para la ejecución de procesos:
 
 ![Pipeline](./images/pipeline.png)
 
