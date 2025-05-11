@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copia el código
-COPY . .
+COPY . /app
 
 # Instala dependencias si las hubiera (agrega requirements.txt si hace falta)
 # RUN pip install -r requirements.txt
