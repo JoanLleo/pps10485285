@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    triggers {
+        // Este trigger hace que Jenkins escanee el repositorio en cada cambio (si usas GitHub, configura el webhook también)
+        pollSCM('* * * * *') // Cada minuto
+
+    }
+
+    stages {
+        stage('Clonar Repositorio') {
+            steps {
+                git 'https://github.com/JoanLleo/pps10485285/tree/main/RA5/RA5_1/3.1/T1'
+            }
+        }
+
+        stage('Instalar Dependencias') {
+            steps {
+                sh 'python -m venv venv && . venv/bin/activate && pip install --upgrade pip'
+            }
+        }
+
+        stage('Ejecutar Pruebas') {
+            steps {
+                sh '. venv/bin/activate && python -m unittest discover -s . -p "test_*.py"'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Todas las etapas se completaron correctamente.'
+        }
+        failure {
+            echo '❌ Ocurrió un error en la canalización.'
+        }
+    }
+}
