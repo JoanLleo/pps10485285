@@ -26,23 +26,23 @@ pipeline {
         stage('Ejecutar Contenedor Docker') {
             steps {
                 // Ejecuta el contenedor en segundo plano con un nombre identificable
-                sh """
+                sh '''
                     docker run -d --name test-jenkins-container \
                     -v $(pwd)/${APP_PATH}:/app \
                     ${DOCKER_IMAGE}:${DOCKER_TAG} sleep infinity
-                """
+                '''
             }
         }
 
         stage('Ejecutar Pruebas en Docker') {
             steps {
                 // Cambiamos al directorio correcto y ejecutamos los tests
-                sh """
+                sh '''
                     docker exec test-jenkins-container bash -c "
                         cd /app/../3.1/T1 &&
                         python3 -m unittest discover -s . -p 'test_*.py'
                     "
-                """
+                '''
             }
         }
 
