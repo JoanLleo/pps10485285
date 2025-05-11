@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'my-jenkins-pps10485285:latest'
+        CONTAINER_NAME = 'test-jenkins-container'
+        APP_DIR = '/app'
+    }
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                // Clonar el repositorio
+                checkout scm
+            }
+        }
+
+        stage('Crear Imagen Docker') {
+            steps {
+                script {
+                    // Crear la imagen Docker desde el Dockerfile
+                    sh 'docker build -t ${DOCKER_IMAGE} -f Dockerfile .'
+                }
+            }
+        }
+
+        stage('Ejecutar Contenedor Docker') {
+            steps {
+                script {
+                    // Levantar el contenedor con el volumen del workspace de Jenkins
+                    // Se monta el directorio donde están los archivos en el contenedor
+                    sh """
+                    docker run -d --name ${CONTAINER_NAME} -v \$(pwd)/RA5/RA5_1/3.2:${APP_DIR} ${DOCKER_IMAGE} sleep infinity
+                    """
+                }
+            }
+        }
+
+        stage('Ejecutar Pruebas en Docker') {
+            steps {
+                script {
+                    // Ejecutar las pruebas dentro del contenedor Docker
+                    sh """
+                    docker exec ${CONTAINER_NAME} bash -c "cd ${APP_DIR} && python3 -m unittest test_calculator.py"
+                    """
+                }
+            }
+        }
+
+        stage('Limpiar Contenedores') {
+            steps {
+                script {
+                    // Detener y eliminar el contenedor después de las pruebas
+                    sh """
+                    docker stop ${CONTAINER_NAME}
+                    docker rm ${CONTAINER_NAME}
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Limpiar cualquier otro recurso, como contenedores Docker
+            sh 'docker system prune -f'
+        }
+    }
+}
