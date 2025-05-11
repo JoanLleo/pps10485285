@@ -18,31 +18,29 @@ Crea un directorio en tu máquina para almacenar las configuraciones y datos de 
 mkdir ~/jenkins_home
 ```
 
+![persistencia](./images/persistencia.png)
+
 ### 2. Ejecución del Dockerfile 
 Nos creamos una imagen con Jenkins y el entorno virtual de python instalados
 
 ```bash
 docker build -t dockerfile .
-``` 
+```
+
+![img](./images/img.png)
 
 ### 3. Ejecuta el contenedor de Jenkins
 Inicia un contenedor Docker con Jenkins usando el siguiente comando:
 ```bash
-docker run -d -p 8080:8080 -p 50000:50000 -v ~/jenkins_home:/var/jenkins_home --name jenkins dockerfile
+docker run -p 8080:8080  -v ~/jenkins_home:/var/jenkins_home dockerfile
 ```
-**Explicación de los parámetros:**
-- `-d`: Ejecuta el contenedor en segundo plano.
-- `-p 8080:8080`: Mapea el puerto 8080 del host al puerto 8080 del contenedor (interfaz web de Jenkins).
-- `-p 50000:50000`: Mapea el puerto para agentes de Jenkins (usado para nodos esclavos).
-- `-v ~/jenkins_home:/var/jenkins_home`: Monta el directorio local `~/jenkins_home` para persistir datos.
-- `--name jenkins`: Asigna el nombre "jenkins" al contenedor.
-- `dockerfile`: Usa la imagen LTS de Jenkins.
 
-### 4. Verifica que el contenedor esté corriendo
-Confirma que el contenedor está activo:
-```bash
-docker ps
-```
+![container](./images/container.png)
+
+**Explicación de los parámetros:**
+- `-p 8080:8080`: Mapea el puerto 8080 del host al puerto 8080 del contenedor (interfaz web de Jenkins).
+- `-v ~/jenkins_home:/var/jenkins_home`: Monta el directorio local `~/jenkins_home` para persistir datos.
+- `dockerfile`: Usa la imagen LTS de Jenkins.
 
 ### 5. Accede a Jenkins
 Abre un navegador y navega a:
@@ -58,21 +56,9 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 Copia la contraseña y pégala en la interfaz web.
 
-### 7. Configura Jenkins
-Sigue las instrucciones en la interfaz web:
-- Instala los plugins recomendados (opción sugerida para principiantes).
-- Crea un usuario administrador.
-- Configura la URL de Jenkins (puedes dejar la predeterminada si es local).
-
-### 8. ¡Listo!
-Jenkins estará configurado y listo para usar.
-
-
 ## Notas Adicionales
 
 - **Persistencia**: El directorio `~/jenkins_home` asegura que las configuraciones se mantengan aunque el contenedor se detenga o elimine.
-- **Puertos**: Verifica que los puertos 8080 y 50000 no estén ocupados por otras aplicaciones.
-- **Personalización**: Puedes ajustar el comando `docker run` o usar un archivo `docker-compose.yml` para configuraciones avanzadas.
 
 ## Solución de Problemas
 
