@@ -1,0 +1,3 @@
+- Crear una cuenta de vagrant cloud 
+- Crear una vm con ubuntu server para poder convertirlo a .box y subirlo para tener acceso desde cualquier lugar y con la configuración que deseamos 
+- Crear un archivo main.tf que cree la vm a partir del .box del cloud 

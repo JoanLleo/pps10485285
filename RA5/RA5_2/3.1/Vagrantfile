@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "BaseBox-lleo/UbuntuServer24-04"
+  config.vm.box_version = "1"
+  config.vm.box_url = "https://vagrantcloud.com/BaseBox-lleo/boxes/UbuntuServer24-04/versions/1/providers/virtualbox.box"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "UbuntuServer24-04-Terraform"
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+end
