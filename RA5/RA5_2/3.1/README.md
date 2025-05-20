@@ -1,4 +1,4 @@
-# RA5.2 - Ejercicio 3.1: Provisionamiento de una máquina virtual Ubuntu 24.04 con Terraform
+#Práctica 3.1: Provisionamiento de una máquina virtual Ubuntu 24.04 con Terraform
 
 Este ejercicio consiste en provisionar una máquina virtual con Ubuntu 24.04 utilizando **Terraform** y **VirtualBox**, partiendo de una imagen `.box` personalizada que ha sido previamente empaquetada y subida a **Vagrant Cloud**.
 

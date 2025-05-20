@@ -1,5 +1,4 @@
-
-# Automatización de VM Ubuntu Server 24.04 con Vagrant, VirtualBox y Ansible
+# Práctica 3.2 Automatización de VM Ubuntu Server 24.04 con Vagrant, VirtualBox y Ansible
 
 Este proyecto permite:
 
