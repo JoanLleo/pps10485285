@@ -1,19 +1,26 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "BaseBox-lleo/UbuntuServer24-04"
+  config.vm.box = "BaseBox-lleo/Ubuntu24-04"
   config.vm.box_version = "1"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "ubuntu-2204"
+    vb.name = "ubuntu-2404"
     vb.memory = 2048
     vb.cpus = 2
+    vb.gui = false
   end
 
-  # Configurar Vagrant para usar el usuario bob y su contraseña
-  config.ssh.username = "bob"
-  config.ssh.password = "ciber"
-  config.ssh.insert_key = false  # No reemplazar claves SSH del usuario
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = false
 
-  # Desactivar carpeta compartida
   config.vm.synced_folder ".", "/vagrant", disabled: true
-end
 
+  # BRIDGED IP FIJA
+  config.vm.network "public_network", bridge: "enp5s0", ip: "192.168.1.254"
+
+  # Python para Ansible
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt update -y
+    sudo apt install -y python3
+  SHELL
+end

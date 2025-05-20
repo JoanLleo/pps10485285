@@ -1,0 +1,36 @@
+---
+- name: Levantar la VM con Vagrant
+  hosts: localhost
+  tasks:
+    - name: Ejecutar vagrant up
+      command: vagrant up
+      args:
+        chdir: "{{ playbook_dir }}"
+
+    - name: Esperar 15 segundos para asegurar arranque
+      pause:
+        seconds: 15
+
+- name: Provisionar Ubuntu 24.04
+  hosts: ubuntu_vm
+  become: yes
+  tasks:
+    - name: Actualizar apt
+      apt:
+        update_cache: yes
+
+    - name: Actualizar paquetes
+      apt:
+        upgrade: dist
+        autoremove: yes
+
+    - name: Instalar Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Habilitar e iniciar Apache
+      service:
+        name: apache2
+        enabled: yes
+        state: started
