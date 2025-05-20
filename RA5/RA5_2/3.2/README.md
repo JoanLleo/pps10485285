@@ -60,7 +60,7 @@ ansible-playbook -i inventory.ini playbook.yml
 
 ![Ejecución](./images/EjecuciónAnsible.png)
 
-![Servicios](./images/Upgrade y Apache.png)
+![Servicios](./images/UpgradeyApache.png)
 
 3. Una vez finalizado, abre tu navegador y visita:
 
