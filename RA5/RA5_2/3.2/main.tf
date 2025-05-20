@@ -1,24 +1,5 @@
-terraform {
-  required_providers {
-    virtualbox = {
-      source  = "terra-farm/virtualbox"
-      version = "0.2.2-alpha.1"
-    }
+resource "null_resource" "ubuntu_vagrant" {
+  provisioner "local-exec" {
+    command = "vagrant up"
   }
 }
-
-provider "virtualbox" {}
-
-resource "virtualbox_vm" "example" {
-  name   = "vm_terraform"
-  image  = "/home/ubuntu/Downloads/iso/ubuntu-24.04.1-live-server-amd64.iso" 
-  cpus   = 2
-  memory = 1024
-  network_adapter {
-    type = "bridged"
-  }
-
-  # Configurar disco duro
-
-}
-

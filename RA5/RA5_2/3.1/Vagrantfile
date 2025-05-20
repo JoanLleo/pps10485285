@@ -1,18 +1,50 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "BaseBox-lleo/UbuntuServer24-04"
+  config.vm.box = "BaseBox-lleo/Ubuntu24-04"
   config.vm.box_version = "1"
 
-  # Evitar el inicio automático de la VM
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "UbuntuServer24-04-Terraform"
+    vb.name = "ubuntu-2204"
     vb.memory = 2048
     vb.cpus = 2
-    vb.gui = false  # No abrir la GUI de VirtualBox
+    vb.gui = true
   end
 
-  # Evitar que Vagrant intente conectarse a la VM a través de SSH
+  # Configurar Vagrant para usar el usuario vagrant
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
   config.ssh.insert_key = false
 
-  # Prevenir la ejecución de cualquier script de provisión
-  config.vm.provision :shell, inline: "exit 0"
+  # Desactivar carpeta compartida predeterminada
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # Configurar adaptador puente en enp5s0
+  config.vm.network "public_network", bridge: "enp5s0", auto_config: true 
+
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "==== IPs de la VM ===="
+
+    # Detectar interfaz NAT por la ruta por defecto
+    NAT_IF=$(ip route | awk '/default/ {print $5; exit}')
+    NAT_IP=$(ip -4 addr show $NAT_IF | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}')
+    echo "NAT Adapter ($NAT_IF): ${NAT_IP}"
+
+    # Esperar hasta que enp0s8 tenga una IP
+#    echo "Esperando a que enp0s8 obtenga IP..."
+    for i in {1..10}; do
+      BRIDGE_IP=$(ip -4 addr show enp0s8 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}')
+      if [ -n "$BRIDGE_IP" ]; then
+        break
+      fi
+      sleep 2
+    done
+
+    if [ -n "$BRIDGE_IP" ]; then
+      echo "Bridged Adapter (enp0s8): ${BRIDGE_IP}"
+    else
+      echo "Bridged Adapter (enp0s8): No se obtuvo IP"
+    fi
+
+    echo "======================"
+  SHELL
 end
+
