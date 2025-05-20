@@ -96,13 +96,3 @@ El archivo `main.tf` define un proveedor de Vagrant para VirtualBox que utiliza 
    terraform destroy
    ```
 
-## Box personalizada
-
-La imagen base utilizada fue previamente empaquetada y subida manualmente a Vagrant Cloud. Puedes encontrarla aquí:
-
-- **Nombre de la box:** `usuario/ubuntu-2404`
-- **Versión:** 1.0.0 (o la versión correspondiente)
-- **URL:** https://app.vagrantup.com/usuario/boxes/ubuntu-2404
-
-> ⚠️ Sustituye `usuario` por tu nombre de usuario real de Vagrant Cloud en caso de clonarlo o reutilizarlo.
-
