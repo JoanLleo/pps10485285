@@ -1,0 +1,26 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "BaseBox-lleo/Ubuntu24-04"
+  config.vm.box_version = "1"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "ubuntu-2404"
+    vb.memory = 2048
+    vb.cpus = 2
+    vb.gui = false
+  end
+
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = false
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # BRIDGED IP FIJA
+  config.vm.network "public_network", bridge: "eno1", ip: "10.112.5.125"
+
+  # Python para Ansible
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt update -y
+    sudo apt install -y python3
+  SHELL
+end

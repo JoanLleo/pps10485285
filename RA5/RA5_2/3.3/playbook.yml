@@ -1,0 +1,41 @@
+---
+- name: Levantar la VM con Vagrant
+  hosts: localhost
+  tasks:
+    - name: Ejecutar vagrant up
+      command: vagrant up
+      args:
+        chdir: "{{ playbook_dir }}"
+
+    - name: Esperar 15 segundos para asegurar arranque
+      pause:
+        seconds: 15
+
+- name: Configurar servidor web y mostrar mensaje
+  hosts: ubuntu_vm
+  become: yes
+  tasks:
+    - name: Instalar Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Crear index.html con mensaje
+      copy:
+        content: "Ansible rocks"
+        dest: /var/www/html/index.html
+
+    - name: Reiniciar Apache
+      service:
+        name: apache2
+        state: restarted
+
+    - name: Verificar contenido con curl
+      command: curl http://localhost
+      register: curl_output
+
+    - name: Mostrar resultado del curl
+      debug:
+        var: curl_output.stdout
+
