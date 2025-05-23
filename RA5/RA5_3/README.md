@@ -1,4 +1,4 @@
-# Práctica: Puesta en Producción Segura con Jenkins
+# Práctica: Monitorización de equipos con Prometheus & Grafana
 
 ## Introducción
 
