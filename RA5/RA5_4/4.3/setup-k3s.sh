@@ -15,7 +15,7 @@ echo "[3/6] Instalando kubectl (ya incluido con K3s)..."
 # No se requiere instalar kubectl manualmente, K3s ya lo instala.
 
 echo "[4/6] Instalando k9s..."
-curl -sS https://webinstall.dev/k9s | sudo bash
+curl -sS https://webinstall.dev/k9s | bash
 source ~/.config/envman/PATH.env
 
 echo "[5/6] Esperando a que el clúster esté listo..."
