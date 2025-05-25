@@ -1,0 +1,32 @@
+apiVersion: apps/v2
+kind: Deployment
+metadata:
+  name: web
+  namespace: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+---
+apiVersion: v2
+kind: Service
+metadata:
+  name: web
+  namespace: webapp
+spec:
+  selector:
+    app: web
+  ports:
+  - port: 80
+    targetPort: 80
