@@ -2,38 +2,30 @@
 
 set -e
 
-echo "[1/5] Instalando K3s..."
+echo "[1/6] Instalando K3s..."
 curl -sfL https://get.k3s.io | sh -
 
-echo "[2/5] Configurando KUBECONFIG..."
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-if ! grep -q KUBECONFIG ~/.bashrc; then
-    echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
-fi
+echo "[2/6] Configurando KUBECONFIG..."
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chown $USER:$(id -gn) ~/.kube/config
 
-echo "[3/5] Instalando kubectl..."
-if ! command -v kubectl &> /dev/null; then
-    curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-    chmod +x kubectl
-    sudo mv kubectl /usr/local/bin/
-fi
+echo "[3/6] Instalando kubectl (ya incluido con K3s)..."
+# No se requiere instalar kubectl manualmente, K3s ya lo instala.
 
-echo "[4/5] Instalando k9s..."
-if ! command -v k9s &> /dev/null; then
-    curl -s https://api.github.com/repos/derailed/k9s/releases/latest \
-    | grep browser_download_url \
-    | grep Linux_x86_64.tar.gz \
-    | cut -d '"' -f 4 \
-    | wget -qi - && \
-    tar -xzf k9s_Linux_x86_64.tar.gz && \
-    sudo mv k9s /usr/local/bin && \
-    rm k9s_Linux_x86_64.tar.gz
-fi
+echo "[4/6] Instalando k9s..."
+curl -sS https://webinstall.dev/k9s | sudo bash
+source ~/.config/envman/PATH.env
 
-echo "[5/5] Aplicando manifiestos de Kubernetes..."
+echo "[5/6] Esperando a que el clúster esté listo..."
+sleep 15
+
+echo "[6/6] Aplicando manifiestos de Kubernetes..."
 kubectl apply -f k8s/01-namespace.yaml
 kubectl apply -f k8s/02-web-deployment.yaml
 kubectl apply -f k8s/03-redis-deployment.yaml
 kubectl apply -f k8s/04-ingress.yaml
 
-echo "✅ Todo listo. Puedes validar con 'k9s'."
+echo "✅ Todo listo. Puedes ejecutar 'k9s' para visualizar el clúster."
+
