@@ -9,7 +9,7 @@ Instalar, configurar y validar un clúster K3s en **modo HA**, desplegar un serv
 
 ## 🖥️ Infraestructura Requerida
 
-- 3 nodos Ubuntu Server 20.04 o 22.04 (virtualizados)
+- 3 nodos Ubuntu Server 24.04 (virtualizados)
 - Conectados en la misma red LAN
 - Acceso entre ellos por SSH
 
@@ -29,11 +29,13 @@ Instalar, configurar y validar un clúster K3s en **modo HA**, desplegar un serv
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--cluster-init" sh -
 ```
 
-Obtener el token:
+Y obtener el token para compartir con el resto de equipos:
 
 ```bash
 cat /var/lib/rancher/k3s/server/node-token
 ```
+
+![img](./images/0.png)
 
 ### En Nodo 2 (join como servidor)
 
@@ -41,11 +43,15 @@ cat /var/lib/rancher/k3s/server/node-token
 curl -sfL https://get.k3s.io | K3S_URL=https://192.168.1.x:6443 K3S_TOKEN=<TOKEN> sh -
 ```
 
+![img](./images/1.png)
+
 ### En Nodo 3 (agente)
 
 ```bash
 curl -sfL https://get.k3s.io | K3S_URL=https://192.168.1.x:6443 K3S_TOKEN=<TOKEN> sh -s - agent
 ```
+
+![img](./images/2.png)
 
 ---
 
@@ -56,6 +62,9 @@ kubectl get nodes
 kubectl get nodes -o wide
 kubectl get pods -A
 ```
+
+![img](./images/3.png)
+![img](./images/4.png)
 
 ---
 
@@ -98,17 +107,26 @@ spec:
     nodePort: 30080
 ```
 
+![img](./images/5.png)
+
 ### Aplicar el deployment:
 
 ```bash
 kubectl apply -f nginx-deploy.yaml
 ```
 
+![img](./images/6.png)
+
 ### Verificar acceso desde LAN:
 
 ```bash
-curl http://192.168.1.100:30080
+curl http://CUALQUIER_IP_NODOS:30080
 ```
+
+![img](./images/7.png)
+![img](./images/8.png)
+![img](./images/9.png)
+
 
 ---
 
@@ -123,9 +141,9 @@ sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown bob:$(id -gn) ~/.kube/config
-
-
 ```
+
+![img](./images/10.png)
 
 ### Ejecutar K9s
 
@@ -133,9 +151,6 @@ sudo chown bob:$(id -gn) ~/.kube/config
 k9s
 ```
 
+![img](./images/11.png)
 
 ---
-
-## 📄 Créditos
-
-Práctica realizada para el módulo de virtualización y orquestación de contenedores.

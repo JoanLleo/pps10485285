@@ -8,7 +8,7 @@ Este repositorio contiene los pasos realizados para la instalación y configurac
 
 ## 🔧 Requisitos
 
-- Ubuntu Server 22.04 (virtualizado)
+- 3 Máquinas virtuales Ubuntu Server 22.04 
 - Acceso mediante SSH desde host
 - Docker/K3s no preinstalado
 
@@ -20,11 +20,16 @@ Este repositorio contiene los pasos realizados para la instalación y configurac
 curl -sfL https://get.k3s.io | sh -
 ```
 
+![img](./images/1.png)
+![img](./images/2.png)
+
 Verificación:
 
 ```
 kubectl get nodes
 ```
+
+![img](./images/3.png)
 
 Para poder usar kubectl como usuario normal:
 
@@ -33,6 +38,8 @@ mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown $(id -u):$(id -g) ~/.kube/config
 ```
+
+![img](./images/4.png)
 
 ---
 
@@ -62,6 +69,8 @@ spec:
         - containerPort: 80
 ```
 
+![img](./images/5.png)
+
 Aplicar el deployment:
 
 ```
@@ -70,7 +79,13 @@ kubectl expose deployment nginx-deployment --type=NodePort --port=80
 kubectl get service
 ```
 
+![img](./images/6.png)
+![img](./images/7.png)
 ---
+
+## Acceso a Nginx
+
+![img](./images/8.png)
 
 ## 📊 Instalación de K9s
 
@@ -80,25 +95,15 @@ tar -xvf k9s_Linux_amd64.tar.gz
 sudo mv k9s /usr/local/bin/
 ```
 
+![img](./images/9.png)
+
+
 Uso:
 
 ```
 k9s
 ```
 
----
-
-## 📸 Capturas recomendadas
-
-- Salida de `kubectl get nodes`
-- Salida de `kubectl get pods`
-- Acceso al servicio Nginx desde navegador del host
-- Pantalla de `k9s` mostrando pods y servicios
+![img](./images/10.png)
 
 ---
-
-## ✅ Validaciones realizadas
-
-- Nodo único activo
-- Nginx funcionando con 2 réplicas
-- K9s mostrando correctamente el estado del clúster
